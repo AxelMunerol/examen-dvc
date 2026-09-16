@@ -3,15 +3,8 @@ import json
 from sklearn.metrics import mean_squared_error, r2_score
 import joblib
 import os
-import dagshub
-import mlflow
 
 os.makedirs('metrics', exist_ok=True)
-dagshub.init(
-    repo_owner="AxelMunerol",
-    repo_name="examen-dvc",
-    mlflow=True,
-)
 
 X_test = pd.read_csv('data/processed/X_test_scaled.csv')
 y_test = pd.read_csv('data/processed/y_test.csv').values.ravel()
@@ -32,8 +25,5 @@ metrics = {
     'r2': r2
 }
 
-with mlflow.start_run(run_name="random-forest-evaluation"):
-    mlflow.log_metrics(metrics)
-    with open('metrics/scores.json', 'w') as f:
-        json.dump(metrics, f, indent=4)
-    mlflow.log_artifact('metrics/scores.json', artifact_path='metrics')
+with open('metrics/scores.json', 'w') as f:
+    json.dump(metrics, f, indent=4)

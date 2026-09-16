@@ -79,10 +79,18 @@ stages:
   train:
     cmd: python src/models/train.py
     deps:
+    - path: data/processed/X_test_scaled.csv
+      hash: md5
+      md5: 5e079189af6bd091d651a89fafb1c290
+      size: 57026
     - path: data/processed/X_train_scaled.csv
       hash: md5
       md5: c1b80eb7f083888b625dd0369cf381f8
       size: 227497
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: a051d29629c8bbb4cfb7e85c7f0315da
+      size: 6456
     - path: data/processed/y_train.csv
       hash: md5
       md5: a9cd9d91da89f732843d72548f64ded3
@@ -93,8 +101,8 @@ stages:
       size: 47
     - path: src/models/train.py
       hash: md5
-      md5: c38839d56e66cdf1abe469163499c660
-      size: 849
+      md5: 0352c2e702a4f92b787a3ab097b73d90
+      size: 1447
     outs:
     - path: models/model.pkl
       hash: md5
@@ -117,8 +125,8 @@ stages:
       size: 1970097
     - path: src/models/evaluate.py
       hash: md5
-      md5: 9803f0c0ebd29b4e4134f8065ab09e2b
-      size: 1028
+      md5: d2594c52a6e1eaa6145f57e727236b85
+      size: 736
     outs:
     - path: data/predictions.csv
       hash: md5
